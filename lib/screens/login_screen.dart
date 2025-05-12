@@ -11,18 +11,10 @@ class LoginScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 80),
           Image.asset(
-            'assets/icons/easier-icon.png',
+            'assets/images/splash.png',
             width: 80,
           ),
           const SizedBox(height: 10),
-          const Text(
-            'easier',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFFFFC727),
-            ),
-          ),
           const SizedBox(height: 20),
           Expanded(
             child: Stack(
