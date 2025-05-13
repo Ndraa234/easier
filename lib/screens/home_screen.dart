@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/home_main.dart';
-import 'pages/tugas_page.dart';
-import 'pages/jadwal_page.dart';
-import 'pages/profil_page.dart';
+import '../pages/home_main.dart';
+import '../pages/tugas_page.dart';
+import '../pages/jadwal_page.dart';
+import '../pages/profil_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
