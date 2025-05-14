@@ -1,5 +1,3 @@
-// lib/screens/splash_screen.dart
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 
@@ -15,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
+      // Gunakan pushReplacementNamed HANYA jika MaterialApp sudah ada di parent
       Navigator.pushReplacementNamed(context, '/login');
     });
   }
