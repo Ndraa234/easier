@@ -1,61 +1,120 @@
 import 'package:flutter/material.dart';
+import 'package:easier/app/modules/tugas/views/tugas_view.dart';
+import 'package:easier/app/modules/chat/views/chat_view.dart';
+import 'package:easier/app/modules/profil/views/profil_view.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int currentIndex = 0;
+
+  final List<Widget> pages = [
+    const HomeContent(),
+    const TugasView(),
+    const ChatView(),
+    const ProfilView(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xF0FAFFF8),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Header
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              color: const Color(0xFF0B4F4B),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "easier",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        "Halo,\nAndra",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-                      const SizedBox(width: 10),
-                      CircleAvatar(
-                        radius: 22,
-                        backgroundColor: Colors.grey[300], // agar terlihat kalau PNG transparan
-                        backgroundImage: AssetImage("assets/images/avatar.png"),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+      body: IndexedStack(
+        index: currentIndex,
+        children: pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        selectedItemColor: Colors.teal[800],
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.assignment), label: 'Tugas'),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        ],
+      ),
+    );
+  }
+}
 
-            Expanded(
-              child: SingleChildScrollView(
+class HomeContent extends StatelessWidget {
+  const HomeContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Stack(
+        children: [
+          // Background gelombang
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Image.asset(
+              "assets/images/wave_header.png",
+              fit: BoxFit.cover,
+              height: 270,
+            ),
+          ),
+
+          Column(
+            children: [
+              const SizedBox(height: 55),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "easier",
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber,
+                      ),
+                    ),
+                    const SizedBox(width: 130),
+                    Row(
+                      children: [
+                        const Text(
+                          "Halo,\nAndra",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                        const SizedBox(width: 10),
+                        CircleAvatar(
+                          radius: 25,
+                          backgroundColor: Colors.grey[300],
+                          backgroundImage: const AssetImage("assets/images/avatar.png"),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Bagian atas (selamat mengerjakan + mata pelajaran)
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 16),
-
-                    // Gambar "Selamat Mengerjakan"
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Image.asset(
@@ -64,106 +123,87 @@ class HomeView extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-
                     const SizedBox(height: 24),
-
-                    // Mata Pelajaran
                     const Text(
                       "Mata Pelajaran",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12),
-                    SizedBox(
-                      height: 90,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          _buildSubjectIcon(
-                            icon: Icons.calculate,
-                            label: "Matematika",
-                            color: Colors.greenAccent,
-                          ),
-                          _buildSubjectIcon(
-                            icon: Icons.language,
-                            label: "Inggris",
-                            color: Colors.lightBlue,
-                          ),
-                          _buildSubjectIcon(
-                            icon: Icons.public,
-                            label: "Sosial",
-                            color: Colors.orangeAccent,
-                          ),
-                          _buildSubjectIcon(
-                            icon: Icons.brush,
-                            label: "Seni",
-                            color: Colors.pinkAccent,
-                          ),
-                          _buildSubjectIcon(
-                            icon: Icons.science,
-                            label: "IPA",
-                            color: Colors.purpleAccent,
-                          ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: const [
+                          SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
+                          SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
+                          SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
+                          SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
+                          SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
+                          SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
+                          SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
+                          SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
+                          SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
+                          SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
                         ],
                       ),
                     ),
-
-                    const SizedBox(height: 24),
-
-                    // Riwayat Pengumpulan
-                    const Text(
-                      "Riwayat Pengumpulan",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        _buildHistoryCard(
-                          subject: "Matematika",
-                          date: "2022-12-24",
-                          time: "07:49 WIB",
-                          status: "Terkirim",
-                          color: Colors.greenAccent,
-                        ),
-                        _buildHistoryCard(
-                          subject: "Seni",
-                          date: "2022-12-24",
-                          time: "07:49 WIB",
-                          status: "Terkirim",
-                          color: Colors.pinkAccent,
-                        ),
-                        _buildHistoryCard(
-                          subject: "IPS",
-                          date: "2022-12-24",
-                          time: "07:49 WIB",
-                          status: "Terkirim",
-                          color: Colors.orangeAccent,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 32),
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
+
+              const SizedBox(height: 24),
+
+              // Bagian Riwayat Pengumpulan scrollable
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Riwayat Pengumpulan",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 12),
+                      Expanded(
+                        child: ListView(
+                          children: const [
+                            HistoryCard(subject: "Matematika", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
+                            HistoryCard(subject: "Seni", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
+                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
+                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
+                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
+                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),  
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
+}
 
-  Widget _buildSubjectIcon({
-    required IconData icon,
-    required String label,
-    required Color color,
-  }) {
+
+
+class SubjectIcon extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+
+  const SubjectIcon({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: Column(
@@ -174,22 +214,31 @@ class HomeView extends StatelessWidget {
             child: Icon(icon, color: Colors.white, size: 30),
           ),
           const SizedBox(height: 6),
-          Text(
-            label,
-            style: const TextStyle(fontSize: 12),
-          ),
+          Text(label, style: const TextStyle(fontSize: 12)),
         ],
       ),
     );
   }
+}
 
-  Widget _buildHistoryCard({
-    required String subject,
-    required String date,
-    required String time,
-    required String status,
-    required Color color,
-  }) {
+class HistoryCard extends StatelessWidget {
+  final String subject;
+  final String date;
+  final String time;
+  final String status;
+  final Color color;
+
+  const HistoryCard({
+    super.key,
+    required this.subject,
+    required this.date,
+    required this.time,
+    required this.status,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
