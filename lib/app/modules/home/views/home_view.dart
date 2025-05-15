@@ -28,8 +28,9 @@ class _HomeViewState extends State<HomeView> {
         children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF124E3E),
         currentIndex: currentIndex,
-        selectedItemColor: Colors.teal[800],
+        selectedItemColor: Color(0xFFFFC727),
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           setState(() {
@@ -124,26 +125,52 @@ class HomeContent extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
+
+                    // Judul mata pelajaran di luar container hijau
                     const Text(
                       "Mata Pelajaran",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
                     const SizedBox(height: 12),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: const [
-                          SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
-                          SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
-                          SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
-                          SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
-                          SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
-                          SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
-                          SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
-                          SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
-                          SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
-                          SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
-                        ],
+
+                    // Container hijau hanya untuk scroll mata pelajaran
+                    Container(
+                      padding: const EdgeInsets.only(
+                        left: 10, top: 16, bottom: 10,
+                        right: 0,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF124E3E),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          bottomLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                        ),
+                      ),
+                      child: SizedBox(
+                        height: 90,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: const [
+                              SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
+                              SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
+                              SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
+                              SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
+                              SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
+                              SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
+                              SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
+                              SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
+                              SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
+                              SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -152,28 +179,36 @@ class HomeContent extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // Bagian Riwayat Pengumpulan scrollable
               Expanded(
-                child: Container(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
                         "Riwayat Pengumpulan",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 12),
                       Expanded(
-                        child: ListView(
-                          children: const [
-                            HistoryCard(subject: "Matematika", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
-                            HistoryCard(subject: "Seni", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
-                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
-                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
-                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),
-                            HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9),),  
-                          ],
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 16),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF124E3E),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: ListView(
+                            children: const [
+                              HistoryCard(subject: "Matematika", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/mat_icon.jpg"),
+                              HistoryCard(subject: "Seni", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/seni_icon.jpg"),
+                              HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/ips_icon.jpg"),
+                              HistoryCard(subject: "IPA", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/ipa_icon.jpg"),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -214,7 +249,14 @@ class SubjectIcon extends StatelessWidget {
             child: Icon(icon, color: Colors.white, size: 30),
           ),
           const SizedBox(height: 6),
-          Text(label, style: const TextStyle(fontSize: 12)),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Color(0xFFFFFFFF),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );
@@ -227,6 +269,7 @@ class HistoryCard extends StatelessWidget {
   final String time;
   final String status;
   final Color color;
+  final String imagePath;
 
   const HistoryCard({
     super.key,
@@ -235,23 +278,47 @@ class HistoryCard extends StatelessWidget {
     required this.time,
     required this.status,
     required this.color,
+    required this.imagePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        "$subject\nJam $time\nTanggal $date\n$status",
-        style: const TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
+      margin: const EdgeInsets.only(bottom: 20), // kasih jarak bawah lebih buat gambar keluar
+      child: Stack(
+        clipBehavior: Clip.none,  // Supaya gambar bisa keluar area stack
+        children: [
+          Container(
+            padding: const EdgeInsets.only(left: 70, top: 12, bottom: 12, right: 12), // beri padding kiri buat ruang gambar
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              "$subject\nJam $time\nTanggal $date\n$status",
+              style: const TextStyle(
+                color: Color(0xFFFFFFFF),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          // Gambar ditempatkan keluar container
+          Positioned(
+            left: 0,
+            top: 10,
+            bottom: 10,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                imagePath,
+                width: 60,
+                height: 60,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
