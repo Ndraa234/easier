@@ -8,18 +8,23 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0B4D3C),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 100), // Atur ketinggian bebas di sini
-          child: Column(
-            children: [
-              Image.asset(
+        child: Column(
+          children: [
+            const SizedBox(height: 180), 
+
+            Center(
+              child: Image.asset(
                 'assets/images/splash.png',
-                width: 80,
+                width: 200,
               ),
-              const SizedBox(height: 10),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 500, // Tinggi area putih bisa disesuaikan
+            ),
+
+            const SizedBox(height: 30),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 15), // karena sudah diberi spacing di atas
+              child: SizedBox(
+                height: 500,
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -102,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                               },
                               child: const Text(
                                 'Login',
-                                style: TextStyle(color: Colors.white), // <-- Tulisan putih
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
@@ -130,8 +135,8 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

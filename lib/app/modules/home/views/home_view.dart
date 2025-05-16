@@ -30,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF124E3E),
         currentIndex: currentIndex,
-        selectedItemColor: Color(0xFFFFC727),
+        selectedItemColor: Color(0xFF124E3E),
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           setState(() {
@@ -203,10 +203,10 @@ class HomeContent extends StatelessWidget {
                           ),
                           child: ListView(
                             children: const [
-                              HistoryCard(subject: "Matematika", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/mat_icon.jpg"),
-                              HistoryCard(subject: "Seni", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/seni_icon.jpg"),
-                              HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/ips_icon.jpg"),
-                              HistoryCard(subject: "IPA", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Colors.orangeAccent, imagePath: "assets/images/ipa_icon.jpg"),
+                              HistoryCard(subject: "Matematika", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/mat_icon.jpg"),
+                              HistoryCard(subject: "Seni", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/seni_icon.jpg"),
+                              HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/ips_icon.jpg"),
+                              HistoryCard(subject: "IPA", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/ipa_icon.jpg"),
                             ],
                           ),
                         ),
@@ -282,44 +282,59 @@ class HistoryCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 20), // kasih jarak bawah lebih buat gambar keluar
-      child: Stack(
-        clipBehavior: Clip.none,  // Supaya gambar bisa keluar area stack
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 70, top: 12, bottom: 12, right: 12), // beri padding kiri buat ruang gambar
+Widget build(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 24),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Gambar di luar kontainer kuning
+        Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              imagePath,
+              width: 100,
+              height: 111,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+
+        // Kontainer kuning
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Text(
-              "$subject\nJam $time\nTanggal $date\n$status",
-              style: const TextStyle(
-                color: Color(0xFFFFFFFF),
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  subject,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text("Jam $time", style: const TextStyle(color: Colors.black)),
+                Text("Tanggal $date", style: const TextStyle(color: Colors.black)),
+                Text(status, style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                )),
+              ],
             ),
           ),
+        ),
+      ],
+    ),
+  );
+}
 
-          // Gambar ditempatkan keluar container
-          Positioned(
-            left: 0,
-            top: 10,
-            bottom: 10,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                imagePath,
-                width: 60,
-                height: 60,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
