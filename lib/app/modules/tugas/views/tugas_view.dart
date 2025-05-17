@@ -5,7 +5,7 @@ class TugasView extends StatelessWidget {
 
   final List<Map<String, String>> tugasList = const [
     {
-      'judul': 'Tugas ke : 1 Bahasa Indonesia',
+      'judul': 'Tugas ke : 1 B. Indonesia',
       'gambar': 'assets/images/bindo_icon.jpg',
     },
     {
