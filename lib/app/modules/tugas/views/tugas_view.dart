@@ -5,7 +5,7 @@ class TugasView extends StatelessWidget {
 
   final List<Map<String, String>> tugasList = const [
     {
-      'judul': 'Tugas ke : 1 B. Indonesia',
+      'judul': 'Tugas ke : 1 B Indonesia',
       'gambar': 'assets/images/bindo_icon.jpg',
     },
     {
@@ -44,7 +44,7 @@ class TugasView extends StatelessWidget {
             child: Image.asset(
               'assets/images/bg_tugas.png',
               fit: BoxFit.cover,
-              height: 230,
+              height: 250,
             ),
           ),
 
@@ -58,14 +58,13 @@ class TugasView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
-                    children: const [
-                      Icon(Icons.arrow_back, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
+                    children: [
+                      const SizedBox(width: 8),
+                      const Text(
                         'Tugas',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 28,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -73,7 +72,7 @@ class TugasView extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 50),
 
                 // Search bar
                 Padding(
