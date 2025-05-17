@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../controllers/tugas_controller.dart';
-
-class TugasView extends GetView<TugasController> {
+class TugasView extends StatelessWidget {
   const TugasView({super.key});
+
+  final List<Map<String, String>> tugasList = const [
+    {
+      'judul': 'Tugas ke : 1 Bahasa Indonesia',
+      'gambar': 'assets/images/bindo_icon.jpg',
+    },
+    {
+      'judul': 'Tugas ke : 2 IPA',
+      'gambar': 'assets/images/ipa_icon.jpg',
+    },
+    {
+      'judul': 'Tugas ke : 3 IPS',
+      'gambar': 'assets/images/ips_icon.jpg',
+    },
+    {
+      'judul': 'Tugas ke : 4 Matematika',
+      'gambar': 'assets/images/mat_icon.jpg',
+    },
+    {
+      'judul': 'Tugas ke : 5 PPKN',
+      'gambar': 'assets/images/ppkn_icon.jpg',
+    },
+    {
+      'judul': 'Tugas ke : 6 Seni Budaya',
+      'gambar': 'assets/images/seni_icon.jpg',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +44,7 @@ class TugasView extends GetView<TugasController> {
             child: Image.asset(
               'assets/images/bg_tugas.png',
               fit: BoxFit.cover,
-              height: 180,
+              height: 230,
             ),
           ),
 
@@ -57,7 +81,7 @@ class TugasView extends GetView<TugasController> {
                   child: TextField(
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.grey.shade200,
                       hintText: 'Cari tugas anda',
                       prefixIcon: const Icon(Icons.search),
                       suffixIcon: const Icon(Icons.mic),
@@ -76,7 +100,7 @@ class TugasView extends GetView<TugasController> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: GridView.builder(
-                      itemCount: 6, // Jumlah tugas dummy
+                      itemCount: tugasList.length,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisSpacing: 16,
@@ -84,35 +108,34 @@ class TugasView extends GetView<TugasController> {
                         childAspectRatio: 0.75,
                       ),
                       itemBuilder: (context, index) {
+                        final tugas = tugasList[index];
+
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Gambar tugas
                             Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
-                                  borderRadius: BorderRadius.circular(12),
-                                  image: const DecorationImage(
-                                    image: NetworkImage('https://via.placeholder.com/150'),
-                                    fit: BoxFit.cover,
-                                  ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  tugas['gambar']!,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
                                 ),
                               ),
                             ),
                             const SizedBox(height: 4),
 
                             // Info tugas
-                            const Text(
-                              'Tugas ke : 4 Matematika',
-                              style: TextStyle(fontSize: 12, color: Colors.grey),
+                            Text(
+                              tugas['judul']!,
+                              style: const TextStyle(fontSize: 12, color: Colors.grey),
                             ),
                             const SizedBox(height: 2),
 
                             // Tombol tambah jawaban
-                            Row(
-                              children: const [
+                            const Row(
+                              children: [
                                 Text(
                                   'Tambah jawaban',
                                   style: TextStyle(
