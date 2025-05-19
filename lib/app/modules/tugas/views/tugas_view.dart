@@ -80,9 +80,9 @@ class TugasView extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.grey.shade200,
+                      fillColor: Color(0xFFE5EDF5),
                       hintText: 'Cari tugas anda',
-                      prefixIcon: const Icon(Icons.search),
+                      prefixIcon: const Icon(Icons.search,color: Color(0xFF55A99D)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(24),
                         borderSide: BorderSide.none,

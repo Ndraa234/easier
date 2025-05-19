@@ -138,7 +138,7 @@ class ChatView extends GetView<ChatController> {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Cari mata pelajaran anda',
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.search,color: Color(0xFF55A99D)),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(vertical: 14),
                       ),
