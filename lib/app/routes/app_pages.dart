@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
+import '../modules/grub/bindings/grub_binding.dart';
+import '../modules/grub/views/grub_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -62,6 +64,11 @@ class AppPages {
           binding: ChatBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.GRUB,
+      page: () => const GrubView(),
+      binding: GrubBinding(),
     ),
   ];
 }

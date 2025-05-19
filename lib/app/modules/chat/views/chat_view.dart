@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:easier/app/modules/grub/views/grub_view.dart';
 
 import '../controllers/chat_controller.dart';
 
@@ -8,7 +9,6 @@ class ChatView extends GetView<ChatController> {
 
   @override
   Widget build(BuildContext context) {
-    // Data pesan dengan gambar profil berbeda-beda
     final List<Map<String, String>> chatList = [
       {
         'mapel': 'Matematika',
@@ -111,9 +111,9 @@ class ChatView extends GetView<ChatController> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
-                    children: [
-                      const SizedBox(width: 8),
-                      const Text(
+                    children: const [
+                      SizedBox(width: 8),
+                      Text(
                         'Pesan',
                         style: TextStyle(
                           color: Colors.white,
@@ -155,75 +155,81 @@ class ChatView extends GetView<ChatController> {
                     itemCount: chatList.length,
                     itemBuilder: (context, index) {
                       final chat = chatList[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Row(
-                          children: [
-                            // Avatar
-                            ClipOval(
-                              child: Image.asset(
-                                chat['image'] ?? 'assets/images/pp.png',
-                                width: 45,
-                                height: 45,
-                                fit: BoxFit.cover,
+                      return InkWell(
+                        onTap: () {
+                          // Navigasi ke halaman GrubView
+                          Get.to(() => const GrubView());
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Row(
+                            children: [
+                              // Avatar
+                              ClipOval(
+                                child: Image.asset(
+                                  chat['image'] ?? 'assets/images/pp.png',
+                                  width: 45,
+                                  height: 45,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 12),
+                              const SizedBox(width: 12),
 
-                            // Info chat
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    chat['mapel'] ?? '',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                              // Info chat
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      chat['mapel'] ?? '',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      chat['pesan'] ?? '',
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // Badge & tanggal
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(4),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Text(
+                                      '1',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
                                   ),
-                                  const SizedBox(height: 2),
+                                  const SizedBox(height: 6),
                                   Text(
-                                    chat['pesan'] ?? '',
+                                    chat['tanggal'] ?? '',
                                     style: const TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 11,
                                       color: Colors.grey,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ],
                               ),
-                            ),
-
-                            // Badge & tanggal
-                            Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Text(
-                                    '1',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  chat['tanggal'] ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 11,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },

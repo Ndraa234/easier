@@ -11,6 +11,7 @@ abstract class Routes {
   static const PROFIL = _Paths.PROFIL;
   static const NAVBAR = _Paths.NAVBAR;
   static const CHAT = _Paths.CHAT;
+  static const GRUB = _Paths.GRUB;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const PROFIL = '/profil';
   static const NAVBAR = '/navbar';
   static const CHAT = '/chat';
+  static const GRUB = '/grub';
 }
