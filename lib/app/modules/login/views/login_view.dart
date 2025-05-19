@@ -113,22 +113,27 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Center(
-                            child: RichText(
-                              text: TextSpan(
-                                text: 'Belum punya akun ? ',
-                                style: const TextStyle(color: Colors.black87),
-                                children: [
-                                  TextSpan(
-                                    text: 'Registrasi',
-                                    style: const TextStyle(
-                                      color: Color(0xFFFFC727),
-                                      fontWeight: FontWeight.bold,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/register');
+                              },
+                              child: RichText(
+                                text: TextSpan(
+                                  text: 'Belum punya akun ? ',
+                                  style: const TextStyle(color: Colors.black87),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Registrasi',
+                                      style: const TextStyle(
+                                        color: Color(0xFFFFC727),
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
