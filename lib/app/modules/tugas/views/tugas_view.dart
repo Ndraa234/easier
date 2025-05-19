@@ -33,7 +33,7 @@ class TugasView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFEFFAF3),
       body: Stack(
         children: [
           // Background hijau gelombang di atas
@@ -83,7 +83,6 @@ class TugasView extends StatelessWidget {
                       fillColor: Colors.grey.shade200,
                       hintText: 'Cari tugas anda',
                       prefixIcon: const Icon(Icons.search),
-                      suffixIcon: const Icon(Icons.mic),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(24),
                         borderSide: BorderSide.none,

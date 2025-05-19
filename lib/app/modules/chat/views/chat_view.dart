@@ -12,7 +12,7 @@ class ChatView extends GetView<ChatController> {
     final List<Map<String, String>> chatList = [
       {
         'mapel': 'Matematika',
-        'pesan': 'Halo David, sudah siap belajar?',
+        'pesan': 'Halo anak anak, sudah siap belajar?',
         'tanggal': '16 Mei',
         'image': 'assets/images/ppmtk.png',
       },
@@ -23,20 +23,62 @@ class ChatView extends GetView<ChatController> {
         'image': 'assets/images/ppindo.png',
       },
       {
-        'mapel': 'IPA',
+        'mapel': 'Ilmu Pengetahuan Alam',
         'pesan': 'Cek materi tentang fotosintesis ya!',
         'tanggal': '14 Mei',
-        'image': 'assets/images/ppipa.png',
+        'image': 'assets/images/ppagama.png',
       },
       {
-        'mapel': 'IPS',
+        'mapel': 'Ilmu Pengetahuan Sosial',
         'pesan': 'Jangan lupa ulangan hari ini',
         'tanggal': '13 Mei',
-        'image': 'assets/images/ppips.png',
+        'image': 'assets/images/ppmtk.png',
       },
       {
         'mapel': 'Pendidikan Agama',
-        'pesan': 'Hi, David. Hope you’re doing well...',
+        'pesan': 'Buat peta konsep tantang hewan ...',
+        'tanggal': '12 Mei',
+        'image': 'assets/images/ppindo.png',
+      },
+      {
+        'mapel': 'Pendidikan Pancasila',
+        'pesan': 'Jangan lupa tugasnya ya anak anak ...',
+        'tanggal': '12 Mei',
+        'image': 'assets/images/ppagama.png',
+      },
+      {
+        'mapel': 'Bahasa Inggris',
+        'pesan': 'Hi, David. Hope you’re doing well ...',
+        'tanggal': '10 Mei',
+        'image': 'assets/images/ppmtk.png',
+      },
+      {
+        'mapel': 'Bahasa Daerah',
+        'pesan': 'Dinten niki sapa nggih sing mboten ...',
+        'tanggal': '10 Mei',
+        'image': 'assets/images/ppindo.png',
+      },
+      {
+        'mapel': 'PenjasOrkes',
+        'pesan': 'Sekarang kerjakan tugasnya ya ...',
+        'tanggal': '9 Mei',
+        'image': 'assets/images/ppagama.png',
+      },
+      {
+        'mapel': 'Bimbingan Konseling',
+        'pesan': 'Davin dan Reno besok ke ruangan ...',
+        'tanggal': '9 Mei',
+        'image': 'assets/images/ppmtk.png',
+      },
+      {
+        'mapel': 'Seni Budaya',
+        'pesan': 'Lanjutkan tugas melukis dikanvas ...',
+        'tanggal': '8 Mei',
+        'image': 'assets/images/ppindo.png',
+      },
+      {
+        'mapel': 'Prakarya',
+        'pesan': 'Besok membawa alat dan bahan memasak ...',
         'tanggal': '12 Mei',
         'image': 'assets/images/ppagama.png',
       },
@@ -70,7 +112,6 @@ class ChatView extends GetView<ChatController> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     children: [
-                      const Icon(Icons.arrow_back, color: Colors.white),
                       const SizedBox(width: 8),
                       const Text(
                         'Pesan',
@@ -98,7 +139,6 @@ class ChatView extends GetView<ChatController> {
                       decoration: InputDecoration(
                         hintText: 'Cari mata pelajaran anda',
                         prefixIcon: const Icon(Icons.search),
-                        suffixIcon: const Icon(Icons.mic),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(vertical: 14),
                       ),
