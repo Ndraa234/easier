@@ -42,9 +42,9 @@ class TugasView extends StatelessWidget {
             left: 0,
             right: 0,
             child: Image.asset(
-              'assets/images/bg_tugas.png',
+              'assets/images/bg_chat.png',
               fit: BoxFit.cover,
-              height: 250,
+              height: 180,
             ),
           ),
 
@@ -72,7 +72,7 @@ class TugasView extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 100),
 
                 // Search bar
                 Padding(

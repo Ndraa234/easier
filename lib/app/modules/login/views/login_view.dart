@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 45),
 
             Padding(
               padding: const EdgeInsets.only(top: 15), // karena sudah diberi spacing di atas

@@ -55,6 +55,13 @@ class AppPages {
       name: _Paths.CHAT,
       page: () => const ChatView(),
       binding: ChatBinding(),
+      children: [
+        GetPage(
+          name: _Paths.CHAT,
+          page: () => const ChatView(),
+          binding: ChatBinding(),
+        ),
+      ],
     ),
   ];
 }
