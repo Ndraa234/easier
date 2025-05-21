@@ -5,6 +5,7 @@ import 'package:easier/app/modules/login/views/login_view.dart';
 import 'package:easier/app/modules/home/views/home_view.dart';
 import 'package:easier/app/modules/register/views/register_view.dart';
 import 'package:easier/app/modules/grub/views/grub_view.dart';
+import 'package:easier/app/modules/riwayat/views/riwayat_view.dart';
 
 void main() {
   runApp(const EasierApp());
@@ -30,6 +31,7 @@ class EasierApp extends StatelessWidget {
         GetPage(name: '/register', page: () => const RegisterView()),
         GetPage(name: '/home', page: () => const HomeView()),
         GetPage(name: '/grub', page: () => const GrubView()),
+        GetPage(name: '/riwayat', page: () => const RiwayatView()),
       ],
     );
   }

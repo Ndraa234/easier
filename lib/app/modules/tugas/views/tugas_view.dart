@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
+
 
 class TugasView extends StatelessWidget {
   const TugasView({super.key});
@@ -132,18 +136,26 @@ class TugasView extends StatelessWidget {
                             const SizedBox(height: 2),
 
                             // Tombol tambah jawaban
-                            const Row(
-                              children: [
-                                Text(
-                                  'Tambah jawaban',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => const _UploadDialog(),
+                                );
+                              },
+                              child: const Row(
+                                children: [
+                                  Text(
+                                    'Tambah jawaban',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: 4),
-                                Icon(Icons.add_circle, size: 16),
-                              ],
+                                  SizedBox(width: 4),
+                                  Icon(Icons.add_circle, size: 18),
+                                ],
+                              ),
                             ),
                           ],
                         );
@@ -159,3 +171,134 @@ class TugasView extends StatelessWidget {
     );
   }
 }
+class _UploadDialog extends StatefulWidget {
+  const _UploadDialog();
+
+  @override
+  State<_UploadDialog> createState() => _UploadDialogState();
+}
+
+class _UploadDialogState extends State<_UploadDialog> {
+  File? _imageFile;
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await ImagePicker().pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: const Color(0xFF135B48),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Header
+            Row(
+              children: [
+                const Icon(Icons.arrow_back, color: Colors.white),
+                const SizedBox(width: 8),
+                const Text(
+                  'Kembali',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // Tombol ambil gambar dan dari galeri
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _ImageButton(
+                  icon: Icons.photo_camera,
+                  label: 'Ambil gambar',
+                  onTap: () => _pickImage(ImageSource.camera),
+                ),
+                _ImageButton(
+                  icon: Icons.image,
+                  label: 'Dari album',
+                  onTap: () => _pickImage(ImageSource.gallery),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 24),
+
+            // Preview jika gambar sudah dipilih
+            if (_imageFile != null)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.file(_imageFile!, height: 120),
+              ),
+
+            const SizedBox(height: 24),
+
+            // Tombol kirim gambar
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFD6B730),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              onPressed: () {
+                if (_imageFile != null) {
+                  Navigator.pop(context);
+                  // Tambahkan aksi upload atau simpan file lokal di sini
+                  Get.snackbar('Sukses', 'Gambar berhasil dipilih!');
+                } else {
+                  Get.snackbar('Oops', 'Pilih gambar dulu ya...');
+                }
+              },
+              icon: const Icon(Icons.send, color: Color(0xFF135B48)),
+              label: const Text('Kirim gambar', style: TextStyle(color: Color(0xFF135B48))),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _ImageButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _ImageButton({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: const Color(0xFFD6B730),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(icon, size: 36, color: Colors.white),
+          ),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(color: Colors.white)),
+        ],
+      ),
+    );
+  }
+}
+

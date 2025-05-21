@@ -12,6 +12,8 @@ import '../modules/profil/bindings/profil_binding.dart';
 import '../modules/profil/views/profil_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/riwayat/bindings/riwayat_binding.dart';
+import '../modules/riwayat/views/riwayat_view.dart';
 import '../modules/tugas/bindings/tugas_binding.dart';
 import '../modules/tugas/views/tugas_view.dart';
 import '../widgets/splash_screen.dart';
@@ -49,10 +51,9 @@ class AppPages {
       binding: RegisterBinding(),
     ),
     GetPage(
-      name: _Paths.PROFIL,
-      page: () => const ProfilView(),
-      binding: ProfilBinding(),
-    ),
+        name: _Paths.PROFIL,
+        page: () => ProfilView(),
+        binding: ProfilBinding()),
     GetPage(
       name: _Paths.CHAT,
       page: () => const ChatView(),
@@ -69,6 +70,11 @@ class AppPages {
       name: _Paths.GRUB,
       page: () => const GrubView(),
       binding: GrubBinding(),
+    ),
+    GetPage(
+      name: _Paths.RIWAYAT,
+      page: () => const RiwayatView(),
+      binding: RiwayatBinding(),
     ),
   ];
 }

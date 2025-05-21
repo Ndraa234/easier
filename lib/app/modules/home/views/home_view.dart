@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easier/app/modules/tugas/views/tugas_view.dart';
 import 'package:easier/app/modules/chat/views/chat_view.dart';
 import 'package:easier/app/modules/profil/views/profil_view.dart';
+import 'package:get/get.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -17,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
     const HomeContent(),
     const TugasView(),
     const ChatView(),
-    const ProfilView(),
+    ProfilView(),
   ];
 
   @override
@@ -64,7 +65,7 @@ class HomeContent extends StatelessWidget {
             child: Image.asset(
               "assets/images/wave_header.png",
               fit: BoxFit.cover,
-              height: 270,
+              height: 280,
             ),
           ),
 
@@ -74,7 +75,6 @@ class HomeContent extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       "easier",
@@ -84,7 +84,7 @@ class HomeContent extends StatelessWidget {
                         color: Colors.amber,
                       ),
                     ),
-                    const SizedBox(width: 130),
+                    const Spacer(),
                     Row(
                       children: [
                         const Text(
@@ -99,8 +99,7 @@ class HomeContent extends StatelessWidget {
                         const SizedBox(width: 10),
                         CircleAvatar(
                           radius: 25,
-                          backgroundColor: Colors.grey[300],
-                          backgroundImage: const AssetImage("assets/images/avatar.png"),
+                          backgroundImage: AssetImage("assets/images/profil.png"),
                         ),
                       ],
                     ),
@@ -110,107 +109,71 @@ class HomeContent extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // Bagian atas (selamat mengerjakan + mata pelajaran)
+              // Gambar Selamat Mengerjakan
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                        "assets/images/selamat_mengerjakan.png",
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-
-                    // Judul mata pelajaran di luar container hijau
-                    const Text(
-                      "Mata Pelajaran",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-
-                    // Container hijau hanya untuk scroll mata pelajaran
-                    Container(
-                      padding: const EdgeInsets.only(
-                        left: 10, top: 16, bottom: 10,
-                        right: 0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF124E3E),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          bottomLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                          bottomRight: Radius.circular(16),
-                        ),
-                      ),
-                      child: SizedBox(
-                        height: 90,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: const [
-                              SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
-                              SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
-                              SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
-                              SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
-                              SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
-                              SubjectIcon(icon: Icons.calculate, label: "Matematika", color: Colors.greenAccent),
-                              SubjectIcon(icon: Icons.language, label: "Inggris", color: Colors.lightBlue),
-                              SubjectIcon(icon: Icons.public, label: "Sosial", color: Colors.orangeAccent),
-                              SubjectIcon(icon: Icons.brush, label: "Seni", color: Colors.pinkAccent),
-                              SubjectIcon(icon: Icons.science, label: "IPA", color: Colors.purpleAccent),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    "assets/images/selamat_mengerjakan.png",
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
 
               const SizedBox(height: 24),
 
+              // Scrollable Content
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(bottom: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      // JADWAL HARI INI
+                      _buildSectionTitle("Jadwal Hari Ini"),
+                      _buildJadwalCard(),
+
+                      const SizedBox(height: 24),
+
+                      // TUGAS MENDATANG
+                      _buildSectionTitle("Segera Kumpulkan"),
+                      _buildTugasCard(),
+
+                      const SizedBox(height: 24),
+
+                      // Dengan ini:
+                      _buildSectionTitle(
                         "Riwayat Pengumpulan",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 16),
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF124E3E),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: ListView(
-                            children: const [
-                              HistoryCard(subject: "Matematika", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/mat_icon.jpg"),
-                              HistoryCard(subject: "Seni", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/seni_icon.jpg"),
-                              HistoryCard(subject: "IPS", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/ips_icon.jpg"),
-                              HistoryCard(subject: "IPA", date: "2022-12-24", time: "07:49 WIB", status: "Terkirim", color: Color(0xFFD9D9D9), imagePath: "assets/images/ipa_icon.jpg"),
+                        trailing: TextButton(
+                          onPressed: () {
+                            Get.toNamed('/riwayat'); // atau Get.to(() => const RiwayatView());
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Selengkapnya",
+                                style: TextStyle(
+                                  color: Color(0xFF124E3E),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline, // Garis bawah
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 14,
+                                color: Color(0xFF124E3E),
+                              ),
                             ],
                           ),
                         ),
                       ),
+                      _buildRiwayatCard(),
+
+                      const SizedBox(height: 24),
                     ],
                   ),
                 ),
@@ -221,120 +184,131 @@ class HomeContent extends StatelessWidget {
       ),
     );
   }
-}
 
-
-
-class SubjectIcon extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Color color;
-
-  const SubjectIcon({
-    super.key,
-    required this.icon,
-    required this.label,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildSectionTitle(String title, {Widget? trailing}) {
     return Padding(
-      padding: const EdgeInsets.only(right: 12),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircleAvatar(
-            backgroundColor: color,
-            radius: 30,
-            child: Icon(icon, color: Colors.white, size: 30),
-          ),
-          const SizedBox(height: 6),
           Text(
-            label,
+            title,
             style: const TextStyle(
-              fontSize: 12,
-              color: Color(0xFFFFFFFF),
+              fontSize: 18,
               fontWeight: FontWeight.bold,
+              color: Colors.black87,
             ),
           ),
+          if (trailing != null) trailing,
         ],
       ),
     );
   }
-}
 
-class HistoryCard extends StatelessWidget {
-  final String subject;
-  final String date;
-  final String time;
-  final String status;
-  final Color color;
-  final String imagePath;
-
-  const HistoryCard({
-    super.key,
-    required this.subject,
-    required this.date,
-    required this.time,
-    required this.status,
-    required this.color,
-    required this.imagePath,
-  });
-
-  @override
-Widget build(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.only(bottom: 24),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Gambar di luar kontainer kuning
-        Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              imagePath,
-              width: 100,
-              height: 111,
-              fit: BoxFit.cover,
-            ),
-          ),
+  Widget _buildJadwalCard() {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF124E3E),
+          borderRadius: BorderRadius.circular(16),
         ),
-
-        // Kontainer kuning
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(12),
+        child: Column(
+          children: const [
+            ListTile(
+              leading: Icon(Icons.calculate, color: Colors.amberAccent),
+              title: Text("Matematika", style: TextStyle(color: Colors.white)),
+              subtitle: Text("08.00 - 09.30", style: TextStyle(color: Colors.white70)),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  subject,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text("Jam $time", style: const TextStyle(color: Colors.black)),
-                Text("Tanggal $date", style: const TextStyle(color: Colors.black)),
-                Text(status, style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                )),
-              ],
+            Divider(color: Colors.white24, height: 0),
+            ListTile(
+              leading: Icon(Icons.science, color: Colors.lightBlueAccent),
+              title: Text("IPA", style: TextStyle(color: Colors.white)),
+              subtitle: Text("09.30 - 11.00", style: TextStyle(color: Colors.white70)),
             ),
-          ),
+            Divider(color: Colors.white24, height: 0),
+            ListTile(
+              leading: Icon(Icons.menu_book, color: Colors.pinkAccent),
+              title: Text("Bahasa Indonesia", style: TextStyle(color: Colors.white)),
+              subtitle: Text("11.00 - 12.30", style: TextStyle(color: Colors.white70)),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
-}
+      ),
+    );
+  }
 
+  Widget _buildTugasCard() {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF124E3E),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          children: const [
+            ListTile(
+              leading: Icon(Icons.assignment, color: Colors.orangeAccent),
+              title: Text("Matematika ke-4", style: TextStyle(color: Colors.white)),
+              subtitle: Text("Deadline: 2 hari lagi", style: TextStyle(color: Colors.white70)),
+            ),
+            Divider(color: Colors.white24, height: 0),
+            ListTile(
+              leading: Icon(Icons.assignment, color: Colors.purpleAccent),
+              title: Text("IPA ke-2", style: TextStyle(color: Colors.white)),
+              subtitle: Text("Deadline: 4 hari lagi", style: TextStyle(color: Colors.white70)),
+            ),
+            Divider(color: Colors.white24, height: 0),
+            ListTile(
+              leading: Icon(Icons.assignment, color: Colors.cyanAccent),
+              title: Text("Bahasa Inggris ke-3", style: TextStyle(color: Colors.white)),
+              subtitle: Text("Deadline: 4 hari lagi", style: TextStyle(color: Colors.white70)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
+  Widget _buildRiwayatCard() {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF124E3E),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          children: const [
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/mat_icon.jpg"),
+              ),
+              title: Text("Matematika", style: TextStyle(color: Colors.white)),
+              subtitle: Text("24 Desember 2022 • 07:49 WIB", style: TextStyle(color: Colors.white70)),
+              trailing: Text("Terkirim", style: TextStyle(color: Colors.greenAccent)),
+            ),
+            Divider(color: Colors.white24, height: 0),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/seni_icon.jpg"),
+              ),
+              title: Text("Seni", style: TextStyle(color: Colors.white)),
+              subtitle: Text("24 Desember 2022 • 07:49 WIB", style: TextStyle(color: Colors.white70)),
+              trailing: Text("Terkirim", style: TextStyle(color: Colors.greenAccent)),
+            ),
+            Divider(color: Colors.white24, height: 0),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/ips_icon.jpg"),
+              ),
+              title: Text("IPS", style: TextStyle(color: Colors.white)),
+              subtitle: Text("24 Desember 2022 • 07:49 WIB", style: TextStyle(color: Colors.white70)),
+              trailing: Text("Terkirim", style: TextStyle(color: Colors.greenAccent)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
