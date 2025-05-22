@@ -13,13 +13,13 @@ class RegisterView extends StatelessWidget {
             const SizedBox(height: 30),
             Image.asset(
               'assets/images/splash.png',
-              width: 150,
+              width: 120,
             ),
-            const SizedBox(height: 28),
+            const SizedBox(height: 20),
             Stack(
               children: [
                 SizedBox(
-                  height: 730,
+                  height: 710,
                   width: double.infinity,
                   child: Image.asset(
                     'assets/images/login_bg.png',
@@ -27,7 +27,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -41,16 +41,16 @@ class RegisterView extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        '"Hai! Yuk, daftar dulu biar bisa gabung sama kita. Isi data di bawah ini, dan akunmu langsung jadi!"',
+                        '"Silahkan isi daftar diri Anda!"',
                         style: TextStyle(fontSize: 14, color: Color(0xFF0B4D3C)),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 15),
                       inputField('Nama Lengkap', 'Masukkan nama lengkap anda'),
                       inputField('Email', 'Masukkan alamat email anda'),
                       inputField('Tanggal Lahir', 'DD / MM / YYYY'),
                       inputField('Sandi', 'Buat sandi anda', isPassword: true),
                       inputField('Komfirmasi sandi', 'Masukkan ulang sandi anda', isPassword: true),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 5),
                       Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(

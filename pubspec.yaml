@@ -35,6 +35,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   get: ^4.7.2
+  flutter_launcher_icons: ^0.13.1  # atau versi terbaru
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"  # ganti dengan path ikonmu
 
 dev_dependencies:
   flutter_test:

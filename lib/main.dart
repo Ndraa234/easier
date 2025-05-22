@@ -6,8 +6,10 @@ import 'package:easier/app/modules/home/views/home_view.dart';
 import 'package:easier/app/modules/register/views/register_view.dart';
 import 'package:easier/app/modules/grub/views/grub_view.dart';
 import 'package:easier/app/modules/riwayat/views/riwayat_view.dart';
+import 'package:easier/app/modules/profil/controllers/profil_controller.dart';
 
 void main() {
+  Get.put(ProfilController());
   runApp(const EasierApp());
 }
 

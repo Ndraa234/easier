@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 180), 
+            const SizedBox(height: 130), 
 
             Center(
               child: Image.asset(
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 45),
+            const SizedBox(height: 70),
 
             Padding(
               padding: const EdgeInsets.only(top: 15), // karena sudah diberi spacing di atas

@@ -52,10 +52,28 @@ class ProfilView extends StatelessWidget {
 
                   const SizedBox(height: 80),
 
-                  const CircleAvatar(
-                    radius: 75,
-                    backgroundImage: AssetImage('assets/images/profil.png'),
-                  ),
+                  Obx(() {
+                    return GestureDetector(
+                      onTap: () => controller.pickImage(),
+                      child: CircleAvatar(
+                        radius: 75,
+                        backgroundImage: controller.imageFile.value != null
+                            ? FileImage(controller.imageFile.value!)
+                            : const AssetImage('assets/images/profil.png') as ImageProvider,
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.camera_alt, size: 20, color: Color(0xFF0E5C4D)),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
 
                   const SizedBox(height: 24),
 
@@ -89,6 +107,7 @@ class ProfilView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
+                    
                     icon: const Icon(Icons.logout, color: Colors.white),
                     label: const Text(
                       'LogOut',

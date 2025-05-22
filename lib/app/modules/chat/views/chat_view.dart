@@ -203,21 +203,7 @@ class ChatView extends GetView<ChatController> {
 
                               // Badge & tanggal
                               Column(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(4),
-                                    decoration: const BoxDecoration(
-                                      color: Colors.green,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Text(
-                                      '1',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ),
+                                children: [                         
                                   const SizedBox(height: 6),
                                   Text(
                                     chat['tanggal'] ?? '',

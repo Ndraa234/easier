@@ -3,6 +3,8 @@ import 'package:easier/app/modules/tugas/views/tugas_view.dart';
 import 'package:easier/app/modules/chat/views/chat_view.dart';
 import 'package:easier/app/modules/profil/views/profil_view.dart';
 import 'package:get/get.dart';
+import 'package:easier/app/modules/profil/controllers/profil_controller.dart';  // Pastikan path sesuai struktur foldermu
+
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -54,6 +56,8 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profilController = Get.find<ProfilController>();
+
     return SafeArea(
       child: Stack(
         children: [
@@ -71,9 +75,9 @@ class HomeContent extends StatelessWidget {
 
           Column(
             children: [
-              const SizedBox(height: 55),
+              const SizedBox(height: 30),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Row(
                   children: [
                     const Text(
@@ -87,20 +91,25 @@ class HomeContent extends StatelessWidget {
                     const Spacer(),
                     Row(
                       children: [
-                        const Text(
-                          "Halo,\nAndra",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                        const SizedBox(width: 10),
-                        CircleAvatar(
-                          radius: 25,
-                          backgroundImage: AssetImage("assets/images/profil.png"),
-                        ),
+                        Obx(() => Text(
+                              "Halo,\n${profilController.nama.value}",
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.right,
+                            )),
+                        const SizedBox(width: 40),
+                        Obx(() {
+                          final file = profilController.imageFile.value;
+                          return CircleAvatar(
+                            radius: 25,
+                            backgroundImage: file != null
+                                ? FileImage(file)
+                                : AssetImage('assets/images/default_profile.png') as ImageProvider,
+                          );
+                        })
                       ],
                     ),
                   ],

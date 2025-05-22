@@ -148,12 +148,13 @@ class TugasView extends StatelessWidget {
                                   Text(
                                     'Tambah jawaban',
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
+                                      color: Color(0xFF124E3E)
                                     ),
                                   ),
                                   SizedBox(width: 4),
-                                  Icon(Icons.add_circle, size: 18),
+                                  Icon(Icons.add_circle, size: 14, color: Color(0xFF124E3E)),
                                 ],
                               ),
                             ),
@@ -163,6 +164,9 @@ class TugasView extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                const SizedBox(height: 20),
+
               ],
             ),
           ),
@@ -203,7 +207,7 @@ class _UploadDialogState extends State<_UploadDialog> {
             // Header
             Row(
               children: [
-                const Icon(Icons.arrow_back, color: Colors.white),
+                BackButton(color: Colors.white),
                 const SizedBox(width: 8),
                 const Text(
                   'Kembali',
@@ -253,13 +257,13 @@ class _UploadDialogState extends State<_UploadDialog> {
                 if (_imageFile != null) {
                   Navigator.pop(context);
                   // Tambahkan aksi upload atau simpan file lokal di sini
-                  Get.snackbar('Sukses', 'Gambar berhasil dipilih!');
+                  Get.snackbar('Sukses', 'Tugas berhasil dikirim!');
                 } else {
-                  Get.snackbar('Oops', 'Pilih gambar dulu ya...');
+                  Get.snackbar('Oops', 'Pilih gambar!');
                 }
               },
-              icon: const Icon(Icons.send, color: Color(0xFF135B48)),
-              label: const Text('Kirim gambar', style: TextStyle(color: Color(0xFF135B48))),
+              label: const Text('Kirim gambar', style: TextStyle(color: Colors.white)),
+              icon: const Icon(Icons.send, color: Colors.white),
             ),
           ],
         ),
