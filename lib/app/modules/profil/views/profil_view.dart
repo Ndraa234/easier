@@ -99,7 +99,9 @@ class ProfilView extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offAllNamed('/login'); 
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF0E5C4D),
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -107,14 +109,12 @@ class ProfilView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    
                     icon: const Icon(Icons.logout, color: Colors.white),
                     label: const Text(
                       'LogOut',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-
                   const SizedBox(height: 20),
                 ],
               ),

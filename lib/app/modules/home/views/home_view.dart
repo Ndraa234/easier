@@ -100,14 +100,14 @@ class HomeContent extends StatelessWidget {
                               ),
                               textAlign: TextAlign.right,
                             )),
-                        const SizedBox(width: 40),
+                        const SizedBox(width: 10),
                         Obx(() {
                           final file = profilController.imageFile.value;
                           return CircleAvatar(
                             radius: 25,
                             backgroundImage: file != null
                                 ? FileImage(file)
-                                : AssetImage('assets/images/default_profile.png') as ImageProvider,
+                                : AssetImage('assets/images/profile.png') as ImageProvider,
                           );
                         })
                       ],
@@ -116,7 +116,7 @@ class HomeContent extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 50),
 
               // Gambar Selamat Mengerjakan
               Padding(

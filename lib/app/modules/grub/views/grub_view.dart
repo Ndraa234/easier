@@ -91,7 +91,7 @@ class GrubView extends GetView<GrubController> {
               ),
               const SizedBox(width: 8),
               const CircleAvatar(
-                backgroundColor: Color(0xFF124E3E),
+                backgroundColor: Colors.amber,
                 child: Icon(Icons.send, color: Colors.white),
               ),
             ],
