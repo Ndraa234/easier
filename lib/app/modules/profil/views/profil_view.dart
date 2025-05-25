@@ -99,20 +99,14 @@ class ProfilView extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   ElevatedButton.icon(
-                    onPressed: () {
-                      Get.offAllNamed('/login'); 
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0E5C4D),
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                    onPressed: () => showLogoutDialog(context),
                     icon: const Icon(Icons.logout, color: Colors.white),
                     label: const Text(
                       'LogOut',
                       style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0E5C4D),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -125,6 +119,63 @@ class ProfilView extends StatelessWidget {
     );
   }
 }
+void showLogoutDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: const Color(0xFF124E3E),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Apakah kamu yakin\ningin keluar?',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Tombol batal
+                  ElevatedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red[600],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    child: const Text('batal', style: TextStyle(color: Colors.white)),
+                  ),
+                  
+                  // Tombol oke
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Tutup dialog
+                      Get.offAllNamed('/login');   // Navigasi ke halaman login
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF9C834),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    child: const Text('oke', style: TextStyle(color: Colors.white)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
 
 class EditableProfileTile extends StatefulWidget {
   final IconData icon;

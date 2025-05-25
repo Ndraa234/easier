@@ -12,7 +12,7 @@ class ChatView extends GetView<ChatController> {
     final List<Map<String, String>> chatList = [
       {
         'mapel': 'Matematika',
-        'pesan': 'Halo anak anak, sudah siap belajar?',
+        'pesan': 'Bagus',
         'tanggal': '16 Mei',
         'image': 'assets/images/ppmtk.png',
       },

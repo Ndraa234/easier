@@ -197,7 +197,7 @@ class _UploadDialogState extends State<_UploadDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: const Color(0xFF135B48),
+      backgroundColor: const Color(0xFF124E3E),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -246,7 +246,7 @@ class _UploadDialogState extends State<_UploadDialog> {
             const SizedBox(height: 24),
 
             // Tombol kirim gambar
-            ElevatedButton.icon(
+            ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFD6B730),
                 shape: RoundedRectangleBorder(
@@ -256,14 +256,31 @@ class _UploadDialogState extends State<_UploadDialog> {
               onPressed: () {
                 if (_imageFile != null) {
                   Navigator.pop(context);
-                  // Tambahkan aksi upload atau simpan file lokal di sini
-                  Get.snackbar('Sukses', 'Tugas berhasil dikirim!');
+                  Get.snackbar(
+                    'Sukses',
+                    'Tugas berhasil dikirim!',
+                    backgroundColor: const Color(0xFFD9D9D9),
+                    colorText: const Color(0xFF0B4D3C),
+                    snackPosition: SnackPosition.TOP,
+                  );
                 } else {
-                  Get.snackbar('Oops', 'Pilih gambar!');
+                  Get.snackbar(
+                    'Oops',
+                    'Pilih gambar duluu!',
+                    backgroundColor: const Color(0xFFD9D9D9),
+                    colorText: Colors.red[600],
+                    snackPosition: SnackPosition.TOP,
+                  );
                 }
               },
-              label: const Text('Kirim gambar', style: TextStyle(color: Colors.white)),
-              icon: const Icon(Icons.send, color: Colors.white),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('Kirim gambar', style: TextStyle(color: Colors.white)),
+                  SizedBox(width: 8),
+                  Icon(Icons.send, color: Colors.white),
+                ],
+              ),
             ),
           ],
         ),

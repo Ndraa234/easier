@@ -58,8 +58,8 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final profilController = Get.find<ProfilController>();
 
-    return SafeArea(
-      child: Stack(
+    return Scaffold(
+      body: Stack(
         children: [
           // Background gelombang
           Positioned(
@@ -75,9 +75,9 @@ class HomeContent extends StatelessWidget {
 
           Column(
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(height: 60),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
                     const Text(
@@ -238,7 +238,7 @@ class HomeContent extends StatelessWidget {
             Divider(color: Colors.white24, height: 0),
             ListTile(
               leading: Icon(Icons.menu_book, color: Colors.pinkAccent),
-              title: Text("Bahasa Indonesia", style: TextStyle(color: Colors.white)),
+              title: Text("B. Indonesia", style: TextStyle(color: Colors.white)),
               subtitle: Text("11.00 - 12.30", style: TextStyle(color: Colors.white70)),
             ),
           ],
@@ -271,7 +271,7 @@ class HomeContent extends StatelessWidget {
             Divider(color: Colors.white24, height: 0),
             ListTile(
               leading: Icon(Icons.assignment, color: Colors.cyanAccent),
-              title: Text("Bahasa Inggris ke-3", style: TextStyle(color: Colors.white)),
+              title: Text("B. Inggris ke-4", style: TextStyle(color: Colors.white)),
               subtitle: Text("Deadline: 4 hari lagi", style: TextStyle(color: Colors.white70)),
             ),
           ],
@@ -294,7 +294,7 @@ class HomeContent extends StatelessWidget {
               leading: CircleAvatar(
                 backgroundImage: AssetImage("assets/images/mat_icon.jpg"),
               ),
-              title: Text("Matematika", style: TextStyle(color: Colors.white)),
+              title: Text("Matematika ke-2", style: TextStyle(color: Colors.white)),
               subtitle: Text("24 Desember 2022 • 07:49 WIB", style: TextStyle(color: Colors.white70)),
               trailing: Text("Terkirim", style: TextStyle(color: Colors.greenAccent)),
             ),
@@ -303,7 +303,7 @@ class HomeContent extends StatelessWidget {
               leading: CircleAvatar(
                 backgroundImage: AssetImage("assets/images/seni_icon.jpg"),
               ),
-              title: Text("Seni", style: TextStyle(color: Colors.white)),
+              title: Text("Seni ke-3", style: TextStyle(color: Colors.white)),
               subtitle: Text("24 Desember 2022 • 07:49 WIB", style: TextStyle(color: Colors.white70)),
               trailing: Text("Terkirim", style: TextStyle(color: Colors.greenAccent)),
             ),
@@ -312,7 +312,7 @@ class HomeContent extends StatelessWidget {
               leading: CircleAvatar(
                 backgroundImage: AssetImage("assets/images/ips_icon.jpg"),
               ),
-              title: Text("IPS", style: TextStyle(color: Colors.white)),
+              title: Text("IPS ke-1", style: TextStyle(color: Colors.white)),
               subtitle: Text("24 Desember 2022 • 07:49 WIB", style: TextStyle(color: Colors.white70)),
               trailing: Text("Terkirim", style: TextStyle(color: Colors.greenAccent)),
             ),

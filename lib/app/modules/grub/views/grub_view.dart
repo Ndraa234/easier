@@ -16,7 +16,7 @@ class GrubView extends GetView<GrubController> {
         title: Row(
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/mat_icon.jpg"),
+              backgroundImage: AssetImage("assets/images/ppmtk.png"),
               radius: 18,
             ),
             const SizedBox(width: 10),
@@ -24,7 +24,7 @@ class GrubView extends GetView<GrubController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text("Matematika", style: TextStyle(fontSize: 16, color: Colors.white)),
-                Text("khusus pembelajaran", style: TextStyle(fontSize: 12, color: Colors.white70)),
+                Text("Khusus Pembelajaran", style: TextStyle(fontSize: 12, color: Colors.white70)),
               ],
             ),
           ],

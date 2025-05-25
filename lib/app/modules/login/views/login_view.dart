@@ -81,17 +81,6 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              'Lupa Sandi ?',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.blueGrey[700],
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
                           const SizedBox(height: 16),
                           Center(
                             child: ElevatedButton(

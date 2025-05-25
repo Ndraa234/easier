@@ -12,14 +12,14 @@ class RiwayatView extends GetView<RiwayatController> {
         'mapel': 'Matematika',
         'tanggal': '20 Mei 2025',
         'status': 'Terkumpul',
-        'tugasKe': 1,
+        'tugasKe': 2,
         'icon': 'assets/images/mat_icon.jpg',
       },
       {
-        'mapel': 'IPA',
+        'mapel': 'Seni',
         'tanggal': '19 Mei 2025',
         'status': 'Terlambat',
-        'tugasKe': 2,
+        'tugasKe': 3,
         'icon': 'assets/images/ipa_icon.jpg'
       },
       {
@@ -30,7 +30,7 @@ class RiwayatView extends GetView<RiwayatController> {
         'icon': 'assets/images/ips_icon.jpg'
       },
       {
-        'mapel': 'Bahasa Inggris',
+        'mapel': 'B. Inggris',
         'tanggal': '17 Mei 2025',
         'status': 'Terlambat',
         'tugasKe': 3,
@@ -123,7 +123,7 @@ class RiwayatView extends GetView<RiwayatController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Tugas ke-$tugasKe dari $subject',
+                  'Tugas ke-$tugasKe $subject',
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const SizedBox(height: 4),
